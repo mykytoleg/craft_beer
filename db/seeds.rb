@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-State.destroy_all
-City.destroy_all
+Brewery.delete_all
+City.delete_all
+State.delete_all
 
 file = Rails.root + 'db/breweries.csv'
 # options = { file_encoding: 'iso-8859-1' }
@@ -15,8 +16,6 @@ file = Rails.root + 'db/breweries.csv'
 data = SmarterCSV.process(file)
 data.each do |item|
   state = State.find_or_create_by(name: item[:state])
-  state.cities
-   .build(name: item[:city]
-        )
-   .save
+  city = state.cities.find_or_create_by(name: item[:city])
+  brewery = city.breweries.create(name: item[:name])
 end
