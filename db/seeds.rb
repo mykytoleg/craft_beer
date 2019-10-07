@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+State.destroy_all
+City.destroy_all
+
+file = Rails.root + 'db/breweries.csv'
+# options = { file_encoding: 'iso-8859-1' }
+# products = SmarterCSV.process(file, options)
+data = SmarterCSV.process(file)
+data.each do |item|
+  state = State.find_or_create_by(name: item[:state])
+  state.cities
+   .build(name: item[:city]
+        )
+   .save
+end
