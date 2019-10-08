@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Beer.delete_all
 BeerStyle.delete_all
 BeerSize.delete_all
 
@@ -18,6 +18,7 @@ ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'states'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'beer_sizes'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'beer_styles'")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'beers'")
 
 file_breweries = Rails.root + 'db/breweries.csv'
 data_breweries = SmarterCSV.process(file_breweries)
@@ -32,5 +33,6 @@ data_beers = SmarterCSV.process(file_beers)
 data_beers.each do |item|
   size = BeerSize.find_or_create_by(size: item[:ounces])
   style = BeerStyle.find_or_create_by(name: item[:style])
+  beer = Beer.create(name: item[:name], abv: item[:abv], ibu: item[:ibu])
 end
 

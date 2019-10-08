@@ -1,0 +1,7 @@
+<h3>Cities:</h3>
+<ol>
+<% @cities.each do |city| %>
+  <li><%= city.name %> / <%= city.state['name'] %> </li>
+
+<% end %>
+</ol>
