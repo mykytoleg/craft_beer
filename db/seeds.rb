@@ -10,12 +10,15 @@ Brewery.delete_all
 City.delete_all
 State.delete_all
 
-file = Rails.root + 'db/breweries.csv'
-# options = { file_encoding: 'iso-8859-1' }
-# products = SmarterCSV.process(file, options)
-data = SmarterCSV.process(file)
-data.each do |item|
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'breweries'")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'cities'")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'states'")
+
+file_breweries = Rails.root + 'db/breweries.csv'
+data_breweries = SmarterCSV.process(file_breweries)
+data_breweries.each do |item|
   state = State.find_or_create_by(name: item[:state])
   city = state.cities.find_or_create_by(name: item[:city])
   brewery = city.breweries.create(name: item[:name])
 end
+
