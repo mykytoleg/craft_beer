@@ -1,0 +1,8 @@
+<h3>Breweries:</h3>
+<ol>
+<% @breweries.each do |brewery| %>
+  <li><strong><%= brewery.name %> </strong></li>
+  <p>City: <%= brewery.city['name'] %> </p>
+  <p>State: <%= brewery.city.state['name'] %> </p>
+<% end %>
+</ol>
