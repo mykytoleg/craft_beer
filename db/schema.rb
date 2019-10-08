@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_040337) do
+ActiveRecord::Schema.define(version: 2019_10_08_200435) do
 
   create_table "beer_sizes", force: :cascade do |t|
     t.decimal "size"
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 2019_10_08_040337) do
     t.decimal "ibu"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "beer_size_id"
+    t.integer "brewery_id"
+    t.index ["beer_size_id"], name: "index_beers_on_beer_size_id"
+    t.index ["brewery_id"], name: "index_beers_on_brewery_id"
   end
 
   create_table "breweries", force: :cascade do |t|
@@ -54,6 +58,8 @@ ActiveRecord::Schema.define(version: 2019_10_08_040337) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "beers", "beer_sizes"
+  add_foreign_key "beers", "breweries"
   add_foreign_key "breweries", "cities"
   add_foreign_key "cities", "states"
 end

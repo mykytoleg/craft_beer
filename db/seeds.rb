@@ -33,6 +33,13 @@ data_beers = SmarterCSV.process(file_beers)
 data_beers.each do |item|
   size = BeerSize.find_or_create_by(size: item[:ounces])
   style = BeerStyle.find_or_create_by(name: item[:style])
-  beer = Beer.create(name: item[:name], abv: item[:abv], ibu: item[:ibu])
+
+  brewery = Brewery.find_by(id: item[:brewery_id])
+
+  beer = size.beers.create(name: item[:name], abv: item[:abv], ibu: item[:ibu], brewery: brewery)
+
+  #beer = size.beers.create(name: item[:name], abv: item[:abv], ibu: item[:ibu], brewery_id: item[:brewery_id])
+
+  #beer = Beer.create(name: item[:name], abv: item[:abv], ibu: item[:ibu])
 end
 
