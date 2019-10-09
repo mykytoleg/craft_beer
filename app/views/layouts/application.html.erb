@@ -10,6 +10,17 @@
   </head>
 
   <body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Breweris', breweries_path %></li>
+        
+      </ul>
+    </nav>
+ </header>
+
     <%= yield %>
   </body>
 </html>

@@ -1,7 +1,7 @@
-<h3>Beers:</h3>
+<h3>Craft Beers:</h3>
 <ol>
 <% @beers.each do |beer| %>
-  <li><strong><%= beer.name %> </strong></li>
-  
+  <li><strong><%= link_to beer.name, beer %></strong>  </li>
+
 <% end %>
 </ol>
