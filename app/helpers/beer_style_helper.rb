@@ -1,0 +1,2 @@
+module BeerStyleHelper
+end

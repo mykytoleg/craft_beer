@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/beer_style', to: 'beer_style#index'
+  get '/beer_style/:id', to: 'beer_style#show', id: /\d+/, as: :style
+
   get '/beers', to: 'beer#index'
   get '/beers/:id', to: 'beer#show', id: /\d+/, as: :beer
 
