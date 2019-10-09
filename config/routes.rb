@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   get '/beer_styles', to: 'beer_style#index'
-  get '/beer_styles/:id', to: 'beer_style#show', id: /\d+/, as: :path
+  get '/beer_styles/:id', to: 'beer_style#show', id: /\d+/, as: :style_pth
   # resources :beer_styles, only: %i[index show]
 
   get '/beers', to: 'beer#index'

@@ -1,1 +1,10 @@
+<h3>Category:</h3>
 <h1> <%= @beerStyle.name%>  </h1>
+
+<h4>Beers:</h4>
+<ul>
+<% @beerStyle.beers.each do |beer| %>
+  <li><strong><%= link_to beer.name, beer %></strong>  </li>
+<% end %>
+
+</ul>

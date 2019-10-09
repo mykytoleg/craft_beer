@@ -1,7 +1,7 @@
 <h1> <%= @beer.name%>  </h1>
 
 <ul>
-<li><strong>Beer style:</strong> <%= @beer.beer_style.name%> </li>
+<li><strong>Beer Style:</strong> <%= link_to @beer.beer_style.name,'../beer_styles/'+@beer.beer_style.id.to_s %> </li>
 <li><strong>Abv:</strong> <%= @beer.abv * 100%>%</li>
 <li><strong>Ibu:</strong> <%= @beer.ibu%> </li>
 <li><strong>Size:</strong> <%= @beer.beer_size.size%> oz.</li>
