@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/beers', to: 'beer#index'
+  get 'beer/show'
   get '/breweries', to: 'brewery#index'
   get '/cities', to: 'city#index'
   get '/states', to: 'state#index'
