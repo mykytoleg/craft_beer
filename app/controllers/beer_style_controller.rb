@@ -1,9 +1,9 @@
 class BeerStyleController < ApplicationController
   def index
-    @beer_styles = BeerStyle.all
+    @beerStyles = BeerStyle.all
   end
 
   def show
-    @beer_style = BeerStyle.find(params[:id])
+    @beerStyle = BeerStyle.find(params[:id])
   end
 end

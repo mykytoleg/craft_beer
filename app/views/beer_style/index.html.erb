@@ -1,2 +1,7 @@
-<h1>BeerStyle#index</h1>
-<p>Find me in app/views/beer_style/index.html.erb</p>
+<h3>Craft Beer styles:</h3>
+<ol>
+<% @beerStyles.each do |style| %>
+  <li><strong><%= link_to style.name, 'beer_styles/'+style.id.to_s %></strong>  </li>
+
+<% end %>
+</ol>
