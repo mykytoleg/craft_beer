@@ -1,7 +1,9 @@
 <h3>Craft Beers:</h3>
-<ol>
+
+<%= paginate @beers%>
+<ul>
 <% @beers.each do |beer| %>
   <li><strong><%= link_to beer.name, beer %></strong>  </li>
-
 <% end %>
-</ol>
+</ul>
+<%= paginate @beers%>
