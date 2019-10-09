@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/cities', to: 'city#index'
   get '/states', to: 'state#index'
 
-  #get '/about', to: 'static#about'
+  get '/pages/:page', to: 'pages#show'
 
   root to: 'beer#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
