@@ -30,13 +30,17 @@ end
 
 file_beers = Rails.root + 'db/beers.csv'
 data_beers = SmarterCSV.process(file_beers)
-data_beers.each do |item|
+data_beers[0..100].each do |item|
   size = BeerSize.find_or_create_by(size: item[:ounces])
   style = BeerStyle.find_or_create_by(name: item[:style])
 
   brewery = Brewery.find_by(id: item[:brewery_id])
+  city = City.find_by(id: brewery.city)
 
-  beer = size.beers.create(name: item[:name], abv: item[:abv], ibu: item[:ibu], brewery: brewery)
+  style = BeerStyle.find_by(name: item[:style])
+
+
+  beer = size.beers.create(name: item[:name], abv: item[:abv], ibu: item[:ibu], brewery: brewery, city: city, beer_style_id: style.id)
 
   #beer = size.beers.create(name: item[:name], abv: item[:abv], ibu: item[:ibu], brewery_id: item[:brewery_id])
 
